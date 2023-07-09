@@ -7,42 +7,50 @@ Description: 'go-serverless
   '
 Globals:
   Function:
-    Timeout: 5
+    Timeout: 30
     MemorySize: 128
 Resources:
-  HelloWorldFunction:
+  GolangDynamodbMicroservice:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: HelloWorldFunction
-      Handler: hello-world
+      CodeUri: GolangDynamodbMicroservice
+      Handler: main
       Runtime: go1.x
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName: SmartMenu
       Architectures:
       - x86_64
       Events:
         CatchAll:
           Type: Api
           Properties:
-            Path: /hello
-            Method: GET
+            Path: /api/{proxy+}
+            Method: ANY
+            RestApiId:
+              Ref: ApiGateway
       Environment:
         Variables:
-          PARAM1: VALUE
+          DATABASE_ENV: DYNAMODB
     Metadata:
-      SamResourceId: HelloWorldFunction
-Outputs:
-  HelloWorldAPI:
-    Description: API Gateway endpoint URL for Prod environment for First Function
-    Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
-  HelloWorldFunction:
-    Description: First Lambda Function ARN
-    Value:
-      Fn::GetAtt:
-      - HelloWorldFunction
-      - Arn
-  HelloWorldFunctionIamRole:
-    Description: Implicit IAM Role created for Hello World function
-    Value:
-      Fn::GetAtt:
-      - HelloWorldFunctionRole
-      - Arn
+      SamResourceId: GolangDynamodbMicroservice
+  ApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: v1
+      OpenApiVersion: 3.0.1
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SmartMenu
+      AttributeDefinitions:
+      - AttributeName: pk
+        AttributeType: S
+      - AttributeName: sk
+        AttributeType: S
+      KeySchema:
+      - AttributeName: pk
+        KeyType: HASH
+      - AttributeName: sk
+        KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST

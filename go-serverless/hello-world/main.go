@@ -7,7 +7,7 @@ import (
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	return events.APIGatewayProxyResponse{
-		Body:       "{\"message\": \"hello world\"}",
+		Body:       "{\"message\": \"hello world 14\"}",
 		StatusCode: 200,
 		Headers: map[string]string{
 			"Content-Type": "application/json",
