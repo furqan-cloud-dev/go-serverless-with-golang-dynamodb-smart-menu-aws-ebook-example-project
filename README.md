@@ -3,7 +3,11 @@ Build Restaurant smart menu example project
 ##
 ebook: "Go Serverless With Golang"
 ##
+[Go Serverless With Golang](https://www.amazon.com/dp/B0CBJYW4QR)
+
 ##
+![go serverless](https://m.media-amazon.com/images/I/61M3UUJ4JQL._SY522_.jpg)
+
 ##
 AWS SAM's "teamplate.yaml" contains all the configuration to setup the cloud project by creating resources (using cloud formation): aws lambda, api gateway, dynamodb table, any access policies
 ##
@@ -23,19 +27,20 @@ golang, serverless, aws lambda + api gateway, dynamodb, aws sam tools
 ##
 ##
 Muhammad Furqan
-##
+#
 I consult companies to build great products.
-##
+#
 I'm passionate about helping developers learn and build scalable & high-performance applications using latest tech-stack & modern cloud solutions.
 ##
 I also work extensively with serverless technologies on AWS
 ##
 ##
-Software Developer | Solution Architect | Consultant
-##
+Software Developer | Solution Architect | 
+Tech Consultant
+#
 Email: furqan.cloud.dev@gmail.com
-##
+#
 Linkedin: https://www.linkedin.com/in/muhammad-furqan-121b691a 
-##
+#
 Github: https://github.com/furqan-cloud-dev
 ##
